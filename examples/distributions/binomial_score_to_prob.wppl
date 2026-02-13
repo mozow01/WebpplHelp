@@ -1,8 +1,18 @@
 // Convert Binomial log-probabilities (score) back to ordinary probabilities.
+// Avoid imperative loops: WebPPL's CPS transform can choke on some JS statements.
 
 var n = 10;
 var p = 0.3;
 var d = Binomial({n: n, p: p});
+
+// Simple recursive range [a..b]
+var range = function(a, b) {
+  return (a > b) ? [] : [a].concat(range(a + 1, b));
+};
+
+var pmf = function(k) {
+  return Math.exp(d.score(k));
+};
 
 // A few selected k values:
 var ks = [0, 1, 2, 3, 4, 5, 10];
@@ -13,11 +23,8 @@ var rows = map(function(k) {
 }, ks);
 
 // Check that probabilities across *all* k sum to ~1.
-var all = [];
-for (var k = 0; k <= n; k++) {
-  all.push(Math.exp(d.score(k)));
-}
-var total = sum(all);
+var allProbs = map(pmf, range(0, n));
+var total = sum(allProbs);
 
 var out = {
   n: n,
@@ -27,3 +34,4 @@ var out = {
 };
 
 out;
+

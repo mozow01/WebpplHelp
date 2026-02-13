@@ -1,4 +1,5 @@
 // Binomial CDF and tail probabilities by summing exp(score(i)).
+// Avoid imperative loops.
 
 var n = 10;
 var p = 0.3;
@@ -6,30 +7,21 @@ var k = 4;
 
 var d = Binomial({n: n, p: p});
 
+var range = function(a, b) {
+  return (a > b) ? [] : [a].concat(range(a + 1, b));
+};
+
 var pmf = function(i) {
   return Math.exp(d.score(i));
 };
 
-var range = function(a, b) {
-  var xs = [];
-  for (var i = a; i <= b; i++) xs.push(i);
-  return xs;
-};
-
-// P(X = k)
 var pEq = pmf(k);
-
-// P(X <= k)
 var pLe = sum(map(pmf, range(0, k)));
-
-// P(X >= k)
 var pGe = sum(map(pmf, range(k, n)));
 
-// Some related quantities:
-var pLt = sum(map(pmf, range(0, k - 1))); // P(X < k)
-var pGt = sum(map(pmf, range(k + 1, n))); // P(X > k)
+var pLt = (k > 0) ? sum(map(pmf, range(0, k - 1))) : 0;
+var pGt = (k < n) ? sum(map(pmf, range(k + 1, n))) : 0;
 
-// Sanity: total mass should be ~1
 var total = sum(map(pmf, range(0, n)));
 
 var out = {
@@ -38,7 +30,6 @@ var out = {
   k: k,
 
   p_eq_k: pEq,
-
   p_le_k: pLe,
   p_lt_k: pLt,
 
@@ -47,8 +38,8 @@ var out = {
 
   sum_all: total,
   check_complements: {
-    p_le_k_plus_p_gt_k: pLe + pGt,   // should be ~1
-    p_lt_k_plus_p_ge_k: pLt + pGe    // should be ~1
+    p_le_k_plus_p_gt_k: pLe + pGt,
+    p_lt_k_plus_p_ge_k: pLt + pGe
   }
 };
 
