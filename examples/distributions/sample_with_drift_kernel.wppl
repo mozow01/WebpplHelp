@@ -1,0 +1,28 @@
+var y = 0.0;
+
+// A local random-walk proposal centered on the previous value.
+var gaussianKernel = function(prevVal) {
+  return Gaussian({mu: prevVal, sigma: 0.25});
+};
+
+var modelNoDrift = function() {
+  var x = sample(Gaussian({mu: 0, sigma: 1}));
+  observe(Gaussian({mu: x, sigma: 0.5}), y);
+  return x;
+};
+
+var modelWithDrift = function() {
+  var x = sample(Gaussian({mu: 0, sigma: 1}), {driftKernel: gaussianKernel});
+  observe(Gaussian({mu: x, sigma: 0.5}), y);
+  return x;
+};
+
+var postNo = Infer({method: 'MCMC', samples: 200, burn: 50, lag: 0, model: modelNoDrift});
+var postYes = Infer({method: 'MCMC', samples: 200, burn: 50, lag: 0, model: modelWithDrift});
+
+var out = {
+  noDrift: repeat(5, function() { return postNo.sample(); }),
+  withDrift: repeat(5, function() { return postYes.sample(); })
+};
+
+out;

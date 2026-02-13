@@ -1,16 +1,19 @@
-var model = function() {
-  // Prior: standard normal
-  return sample(Gaussian({mu: 0, sigma: 1}), {
-    // Guide: shifted normal (mu=2)
+var model = function() { return sample(Gaussian({mu: 0, sigma: 1}), {
     guide: function() {
       return Gaussian({mu: 2, sigma: 1});
     }
   });
 };
 
-// Compare forward sampling from the model vs from the guide.
-// (Forward sampling ignores factor/observe; we're only demonstrating *syntax* here.)
-var fromModel = Infer({method: 'forward', samples: 5, model: model});
-var fromGuide = Infer({method: 'forward', samples: 5, guide: true, model: model});
+// One forward sample (as a distribution with 1 particle), then take that sample.
+var oneForward = function(useGuide) {
+  return Infer({method: 'forward', samples: 1, guide: useGuide, model: model}).sample();
+};
 
-display({fromModel: fromModel.support(), fromGuide: fromGuide.support()});
+var out = {
+  fromModel: repeat(5, function() { return oneForward(false); }),
+  fromGuide: repeat(5, function() { return oneForward(true); })
+};
+
+out;
+
