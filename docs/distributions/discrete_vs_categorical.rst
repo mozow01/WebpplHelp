@@ -98,6 +98,22 @@ distributions—though discretization is always possible when appropriate.
 Examples: nominal vs ordinal
 ----------------------------
 
+This example demonstrates how ``Categorical`` naturally models the first two measurement levels:
+
+- **Nominal**: outcomes are *labels* with no inherent order (e.g. colors).
+- **Ordinal**: outcomes are still labels, but we interpret them as ordered (e.g. low < medium < high).
+
+The key point is that ``Categorical`` itself does **not** “know” about order. It simply returns one of the values in ``vs``
+according to the weights in ``ps``. If you want to perform numeric operations that rely on order (for example, compute an
+“average level”), you must **explicitly encode** your ordinal labels as **ranks** (e.g. low→1, medium→2, high→3).
+
+The code below therefore prints three exact (enumerated) distributions:
+
+1. a nominal distribution over color labels,
+2. an ordinal distribution over level labels (still just labels),
+3. the same ordinal distribution after mapping labels to numeric ranks, which makes quantities like expected rank well-defined.
+
+
 .. literalinclude:: ../../examples/distributions/categorical_nominal_vs_ordinal.wppl
    :language: javascript
    :linenos:
