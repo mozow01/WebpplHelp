@@ -19,10 +19,10 @@ Use cases
 Executable example
 ------------------
 
-.. literalinclude:: ../examples/distributions/binomial.wppl
+.. literalinclude:: ../../examples/distributions/binomial.wppl
    :language: javascript
    :linenos:
 
-.. program-output:: python ../../scripts/run_webppl.py ../../examples/distributions/binomial.wppl --random-seed 0
+.. program-output:: python ../scripts/run_webppl.py ../examples/distributions/binomial.wppl --random-seed 0
    :prompt:
    :ellipsis: 0

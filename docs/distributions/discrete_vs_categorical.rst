@@ -1,5 +1,5 @@
 Discrete vs. Categorical
-=======================
+========================
 
 Both ``Discrete`` and ``Categorical`` represent a finite distribution parameterized by a list of non-negative numbers.
 
@@ -16,10 +16,10 @@ For both constructors, ``ps`` can be an unnormalized weight vector:
 Executable example
 ------------------
 
-.. literalinclude:: ../examples/distributions/discrete_vs_categorical.wppl
+.. literalinclude:: ../../examples/distributions/discrete_vs_categorical.wppl
    :language: javascript
    :linenos:
 
-.. program-output:: python ../../scripts/run_webppl.py ../../examples/distributions/discrete_vs_categorical.wppl --random-seed 0
+.. program-output:: python ../scripts/run_webppl.py ../examples/distributions/discrete_vs_categorical.wppl --random-seed 0
    :prompt:
    :ellipsis: 0

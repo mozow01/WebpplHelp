@@ -48,7 +48,7 @@ Working examples
 1) One flip (default p=0.5 and explicit p)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. literalinclude:: ../examples/distributions/flip_one.wppl
+.. literalinclude:: ../../examples/distributions/flip_one.wppl
    :language: javascript
    :linenos:
 
@@ -60,7 +60,7 @@ Working examples
 2) Many flips: repeat + count trues + empirical rate
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. literalinclude:: ../examples/distributions/flip_many.wppl
+.. literalinclude:: ../../examples/distributions/flip_many.wppl
    :language: javascript
    :linenos:
 
@@ -72,7 +72,7 @@ Working examples
 3) Same distribution: flip vs Bernoulli vs Categorical (enumerate)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. literalinclude:: ../examples/distributions/flip_equivalences.wppl
+.. literalinclude:: ../../examples/distributions/flip_equivalences.wppl
    :language: javascript
    :linenos:
 

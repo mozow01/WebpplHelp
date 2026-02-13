@@ -21,10 +21,10 @@ If you need 0/1 values, consider:
 Executable example
 ------------------
 
-.. literalinclude:: ../examples/distributions/bernoulli.wppl
+.. literalinclude:: ../../examples/distributions/bernoulli.wppl
    :language: javascript
    :linenos:
 
-.. program-output:: python ../../scripts/run_webppl.py ../../examples/distributions/bernoulli.wppl --random-seed 0
+.. program-output:: python ../scripts/run_webppl.py ../examples/distributions/bernoulli.wppl --random-seed 0
    :prompt:
    :ellipsis: 0

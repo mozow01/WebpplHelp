@@ -15,11 +15,11 @@ This differs from ``Discrete``/``Categorical``, which allow **unnormalized** wei
 Executable example
 ------------------
 
-.. literalinclude:: ../examples/distributions/multinomial.wppl
+.. literalinclude:: ../../examples/distributions/multinomial.wppl
    :language: javascript
    :linenos:
 
-.. program-output:: python ../../scripts/run_webppl.py ../../examples/distributions/multinomial.wppl --random-seed 0
+.. program-output:: python ../scripts/run_webppl.py ../examples/distributions/multinomial.wppl --random-seed 0
    :prompt:
    :ellipsis: 0
 
