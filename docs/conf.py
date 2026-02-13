@@ -24,3 +24,12 @@ autosectionlabel_prefix_document = True
 html_static_path = ['_static']
 
 html_baseurl = "https://mozow01.github.io/WebpplHelp/"
+
+html_context = {
+    "display_github": True,
+    "github_user": "mozow01",
+    "github_repo": "WebpplHelp",
+    "github_version": "main",
+    "conf_py_path": "/docs/",
+}
+
