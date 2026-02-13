@@ -141,6 +141,7 @@ Equivalently:
 This is convenient because very small probabilities remain representable as log values,
 and you can always convert back with ``exp`` when you want human-readable probabilities.
 
+
 Executable example: converting ``score(k)`` back to probability
 ---------------------------------------------------------------
 

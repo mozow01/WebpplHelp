@@ -1,0 +1,40 @@
+// Negative binomial as a Gamma–Poisson mixture (overdispersed counts).
+
+var mean = function(xs) {
+  return sum(xs) / xs.length;
+};
+
+var variance = function(xs) {
+  var m = mean(xs);
+  var sq = map(function(x) { return (x - m) * (x - m); }, xs);
+  return sum(sq) / (xs.length - 1);
+};
+
+var r = 3;
+var p = 0.4;
+
+// Gamma-Poisson construction for NB(r,p) on k = 0,1,2,...
+var theta = (1 - p) / p; // scale
+var sampleGammaPoissonNB = function(r, p) {
+  var lambda = sample(Gamma({shape: r, scale: (1 - p) / p}));
+  return sample(Poisson({mu: lambda}));
+};
+
+// Waiting-time sampler (same NB parameterization)
+var negBinFailures = function(r, p) {
+  return (r === 0)
+    ? 0
+    : (flip(p) ? negBinFailures(r - 1, p) : (1 + negBinFailures(r, p)));
+};
+
+var N = 200;
+var sWait = repeat(N, function() { return negBinFailures(r, p); });
+var sMix  = repeat(N, function() { return sampleGammaPoissonNB(r, p); });
+
+var out = {
+  params: {r: r, p: p, gamma_scale_theta: theta},
+  waiting_time: {mean: mean(sWait), var: variance(sWait), first10: sWait.slice(0, 10)},
+  gamma_poisson: {mean: mean(sMix), var: variance(sMix), first10: sMix.slice(0, 10)}
+};
+
+out;

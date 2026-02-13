@@ -1,0 +1,75 @@
+// 1) Implement log PMF for NB(r,p) where K = #failures before r-th success.
+// 2) Convert score (log prob) to prob via exp.
+// 3) Use factor(logp) to do inference over p on a small discrete grid.
+
+var logFactorial = function(n) {
+  return (n <= 1) ? 0 : (Math.log(n) + logFactorial(n - 1));
+};
+
+var logChoose = function(n, k) {
+  // log C(n, k)
+  return logFactorial(n) - logFactorial(k) - logFactorial(n - k);
+};
+
+var negBinLogPmf = function(k, r, p) {
+  // log P(K=k) = log C(k+r-1, k) + k log(1-p) + r log(p)
+  return logChoose(k + r - 1, k) + k * Math.log(1 - p) + r * Math.log(p);
+};
+
+var r = 3;
+var p = 0.4;
+
+// Show a few exact point probabilities derived from log-PMF:
+var ks = [0, 1, 2, 3, 4, 5, 10];
+var rows = map(function(k) {
+  var lp = negBinLogPmf(k, r, p);
+  return {k: k, logp: lp, prob: Math.exp(lp)};
+}, ks);
+
+// CDF/tail examples without any truncation (finite sums):
+var range = function(a, b) {
+  return (a > b) ? [] : [a].concat(range(a + 1, b));
+};
+
+var pmf = function(k) { return Math.exp(negBinLogPmf(k, r, p)); };
+
+var k0 = 5;
+var pLe = sum(map(pmf, range(0, k0)));         // P(K <= k0)
+var pLt = sum(map(pmf, range(0, k0 - 1)));     // P(K <  k0)
+var pGe = 1 - pLt;                             // P(K >= k0) = 1 - P(K < k0)
+var pGt = 1 - pLe;                             // P(K >  k0) = 1 - P(K <= k0)
+
+// Posterior over p given an observed k using factor(logp):
+var kObs = 5;
+var grid = [0.2, 0.4, 0.6, 0.8];
+
+var model = function() {
+  var pCand = sample(Categorical({vs: grid})); // uniform over grid
+  factor(negBinLogPmf(kObs, r, pCand));
+  return pCand;
+};
+
+var posterior = Infer({method: "enumerate", model: model});
+
+var supp = posterior.support();
+var probs = map(function(v) { return Math.exp(posterior.score(v)); }, supp);
+
+var out = {
+  params: {r: r, p: p},
+  selected_pmf_values: rows,
+
+  cdf_and_tails_at_k: k0,
+  p_le_k: pLe,
+  p_ge_k: pGe,
+  p_gt_k: pGt,
+
+  inference_example: {
+    observed_k: kObs,
+    p_grid: grid,
+    posterior_support: supp,
+    posterior_probs: probs,
+    sum: sum(probs)
+  }
+};
+
+out;

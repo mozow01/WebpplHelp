@@ -1,0 +1,23 @@
+// Negative binomial as "failures before r-th success" in Bernoulli trials.
+
+var negBinFailures = function(r, p) {
+  // Returns number of failures before the r-th success.
+  return (r === 0)
+    ? 0
+    : (flip(p) ? negBinFailures(r - 1, p) : (1 + negBinFailures(r, p)));
+};
+
+var r = 3;
+var p = 0.4;
+
+var out = {
+  interpretation: "K = #failures before the r-th success",
+  r: r,
+  p: p,
+  samples_K: repeat(8, function() { return negBinFailures(r, p); }),
+
+  // Special case r=1 (geometric in this parameterization)
+  geometric_r1_samples: repeat(8, function() { return negBinFailures(1, p); })
+};
+
+out;

@@ -16,6 +16,8 @@ and return a *distribution object*. Distribution objects are mainly used in two 
    sample_and_score
    flip
    bernoulli
-   binomial
    discrete_vs_categorical
+   binomial
    multinomial
+   negative_binomial
+
