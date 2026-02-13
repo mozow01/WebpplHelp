@@ -1,0 +1,27 @@
+var ps = [0.1, 0.3, 0.6]; // MUST sum to 1 for Multinomial
+var n = 5;
+
+var d = Multinomial({ps: ps, n: n});
+
+display("A Multinomial sample is a vector of counts (same length as ps):");
+display(sample(d));
+
+var counts = [0, 2, 3]; // length 3, sums to 5
+display("score(counts) is the log-probability of exactly these counts:");
+display(d.score(counts));
+
+// Typical pattern: use Multinomial as a likelihood over observed count vectors.
+var model = function() {
+  // discrete prior over candidate probability vectors:
+  var theta = uniformDraw([0.2, 0.5, 0.8]);
+  var probs = [theta, 1-theta]; // sums to 1
+
+  // observed data: 7 times category 0, 3 times category 1
+  var obsCounts = [7, 3];
+  observe(Multinomial({ps: probs, n: sum(obsCounts)}), obsCounts);
+
+  return theta;
+};
+
+display("Posterior over theta given counts [7,3] (exact enumerate):");
+display(Infer({method: 'enumerate', model: model}));

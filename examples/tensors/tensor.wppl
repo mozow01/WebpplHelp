@@ -1,0 +1,3 @@
+// Tensor(dims, arr): dims is an array of dimensions, arr is a FLAT array.
+var t = Tensor([2, 2], [1, 2, 3, 4]);
+display(t);

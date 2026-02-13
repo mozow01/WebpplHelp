@@ -1,0 +1,7 @@
+var model = function() {
+  return flip() + flip();
+};
+
+// Enumeration is deterministic for finite models.
+var dist = Infer({method: 'enumerate', model: model});
+display(dist);

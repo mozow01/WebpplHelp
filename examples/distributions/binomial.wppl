@@ -1,0 +1,20 @@
+var d = Binomial({n: 10, p: 0.3});
+
+display("One Binomial sample is an integer count in {0..n}:");
+display(sample(d));
+
+display("A few samples:");
+display(repeat(8, function() { return sample(d); }));
+
+display("score(k) is the log-probability of seeing exactly k successes:");
+display({k4: d.score(4), k0: d.score(0), k10: d.score(10)});
+
+// Binomial is often used as a likelihood via observe(...).
+// Here we do exact inference over a *discrete* set of candidate p values.
+var model = function() {
+  var p = uniformDraw([0.1, 0.3, 0.5]);
+  observe(Binomial({n: 10, p: p}), 4);
+  return p;
+};
+display("Posterior over p given k=4 out of n=10 (exact enumerate):");
+display(Infer({method: 'enumerate', model: model}));

@@ -1,0 +1,7 @@
+var xs = [10, 20, 30];
+
+// mapData: first arg is an OPTIONS OBJECT with key `data`.
+// The function receives (element, index).
+var ys = mapData({data: xs}, function(x, i) { return [i, x / 10]; });
+
+display(ys);

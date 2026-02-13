@@ -1,0 +1,10 @@
+var d = Bernoulli({p: 0.1});
+
+// sample: draw a value (boolean)
+var x = sample(d);
+
+// score: log-probability of a particular value
+var logp_true = d.score(true);
+var logp_false = d.score(false);
+
+display({sample: x, logp_true: logp_true, logp_false: logp_false});

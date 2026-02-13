@@ -1,0 +1,11 @@
+var d = Bernoulli({p: 0.7});
+
+display("Bernoulli samples are booleans (true/false):");
+display(repeat(8, function() { return sample(d); }));
+
+display("score(true) is log(p), score(false) is log(1-p):");
+display({logp_true: d.score(true), logp_false: d.score(false)});
+
+// flip(p) is shorthand for sample(Bernoulli({p: p}))
+display("flip(0.7) samples a boolean too:");
+display(repeat(8, function() { return flip(0.7); }));
