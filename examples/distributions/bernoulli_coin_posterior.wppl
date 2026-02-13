@@ -1,0 +1,32 @@
+// Real-life story: a biased coin.
+// true = heads, false = tails.
+var observations = [
+  true, true, false, true, true,
+  false, true, true, true, false
+];
+
+// Discrete grid prior so we can enumerate exactly.
+var grid = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9];
+var prior = Categorical({vs: grid}); // uniform over grid (ps omitted)
+
+var model = function() {
+  var p = sample(prior);
+  map(function(o) {
+    observe(Bernoulli({p: p}), o);
+  }, observations);
+  return p;
+};
+
+var posterior = Infer({method: 'enumerate', model: model});
+
+// Convert log scores to ordinary probabilities
+var supp = posterior.support();
+var probs = map(function(v) { return Math.exp(posterior.score(v)); }, supp);
+
+var out = {
+  support: supp,
+  probs: probs,
+  sum: sum(probs)
+};
+
+out;
