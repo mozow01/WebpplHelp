@@ -1,0 +1,31 @@
+// Click-through rate example:
+// n emails sent, k clicks observed (successes).
+var n = 10;
+var k = 4;
+
+// Discrete prior grid for p so we can enumerate exactly.
+var grid = [0.1, 0.3, 0.5];
+var prior = Categorical({vs: grid}); // uniform over the grid
+
+var model = function() {
+  var p = sample(prior);
+  observe(Binomial({n: n, p: p}), k);
+  return p;
+};
+
+var posterior = Infer({method: "enumerate", model: model});
+
+// Convert log scores to ordinary probabilities
+var supp = posterior.support();
+var probs = map(function(v) { return Math.exp(posterior.score(v)); }, supp);
+
+var out = {
+  n: n,
+  k: k,
+  p_grid: grid,
+  posterior_support: supp,
+  posterior_probs: probs,
+  sum: sum(probs)
+};
+
+out;

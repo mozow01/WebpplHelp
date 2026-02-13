@@ -1,0 +1,29 @@
+// Convert Binomial log-probabilities (score) back to ordinary probabilities.
+
+var n = 10;
+var p = 0.3;
+var d = Binomial({n: n, p: p});
+
+// A few selected k values:
+var ks = [0, 1, 2, 3, 4, 5, 10];
+
+var rows = map(function(k) {
+  var logp = d.score(k);
+  return {k: k, logp: logp, p: Math.exp(logp)};
+}, ks);
+
+// Check that probabilities across *all* k sum to ~1.
+var all = [];
+for (var k = 0; k <= n; k++) {
+  all.push(Math.exp(d.score(k)));
+}
+var total = sum(all);
+
+var out = {
+  n: n,
+  p: p,
+  selected: rows,
+  sum_over_all_k: total
+};
+
+out;

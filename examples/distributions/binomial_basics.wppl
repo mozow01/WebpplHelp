@@ -1,0 +1,13 @@
+var d = Binomial({n: 10, p: 0.3});
+
+var out = {
+  oneSample: sample(d),
+  someSamples: repeat(8, function() { return sample(d); }),
+
+  // score(k) is log P(X = k)
+  logp_k4: d.score(4),
+  logp_k0: d.score(0),
+  logp_k10: d.score(10)
+};
+
+out;
