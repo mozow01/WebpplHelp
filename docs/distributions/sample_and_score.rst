@@ -16,9 +16,7 @@ or log density (continuous) that the distribution assigns to ``val``.
 A minimal example
 -----------------
 
-.. program-output:: python ../scripts/run_webppl.py ../examples/distributions/sample_score.wppl --random-seed 0
-   :prompt:
-   :ellipsis: 0
+.. program-output:: python ../scripts/run_webppl.py examples/distributions/sample_score.wppl --random-seed 0
 
 The optional second argument to ``sample``
 ------------------------------------------
@@ -36,9 +34,7 @@ A guide distribution is specified like this:
 The example below shows the *syntax* and uses forward sampling to make the
 difference visible:
 
-.. program-output:: python ../scripts/run_webppl.py ../examples/distributions/sample_with_guide.wppl --random-seed 0
-   :prompt:
-   :ellipsis: 0
+.. program-output:: python ../scripts/run_webppl.py examples/distributions/sample_with_guide.wppl --random-seed 0
 
 Drift kernels
 ~~~~~~~~~~~~~

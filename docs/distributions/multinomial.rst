@@ -19,9 +19,7 @@ Executable example
    :language: javascript
    :linenos:
 
-.. program-output:: python ../scripts/run_webppl.py ../examples/distributions/multinomial.wppl --random-seed 0
-   :prompt:
-   :ellipsis: 0
+.. program-output:: python ../scripts/run_webppl.py examples/distributions/multinomial.wppl --random-seed 0
 
 Common failure modes
 --------------------

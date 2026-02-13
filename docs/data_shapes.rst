@@ -15,9 +15,7 @@ Example: ``map(fn, arr)``
    :language: javascript
    :linenos:
 
-.. program-output:: python ../scripts/run_webppl.py ../examples/arrays/map.wppl --random-seed 0
-   :prompt:
-   :ellipsis: 0
+.. program-output:: python ../scripts/run_webppl.py examples/arrays/map.wppl --random-seed 0
 
 Options objects (named arguments)
 ---------------------------------
@@ -31,9 +29,7 @@ Example: ``mapData({data: arr[, batchSize: n]}, fn)``
    :language: javascript
    :linenos:
 
-.. program-output:: python ../scripts/run_webppl.py ../examples/arrays/mapData.wppl --random-seed 0
-   :prompt:
-   :ellipsis: 0
+.. program-output:: python ../scripts/run_webppl.py examples/arrays/mapData.wppl --random-seed 0
 
 Tensors: dims + flat array
 --------------------------
@@ -49,9 +45,7 @@ Example: ``Tensor(dims, arr)``
    :language: javascript
    :linenos:
 
-.. program-output:: python ../scripts/run_webppl.py ../examples/tensors/tensor.wppl --random-seed 0
-   :prompt:
-   :ellipsis: 0
+.. program-output:: python ../scripts/run_webppl.py examples/tensors/tensor.wppl --random-seed 0
 
 Inference call form (always options object)
 -------------------------------------------
@@ -64,7 +58,5 @@ Inference is typically invoked via an options object:
    :language: javascript
    :linenos:
 
-.. program-output:: python ../scripts/run_webppl.py ../examples/inference/enumerate.wppl --random-seed 0
-   :prompt:
-   :ellipsis: 0
+.. program-output:: python ../scripts/run_webppl.py examples/inference/enumerate.wppl --random-seed 0
 

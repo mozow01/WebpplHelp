@@ -52,9 +52,7 @@ Working examples
    :language: javascript
    :linenos:
 
-.. program-output:: python ../scripts/run_webppl.py ../examples/distributions/flip_one.wppl --random-seed 0
-   :prompt:
-   :ellipsis: 0
+.. program-output:: python ../scripts/run_webppl.py examples/distributions/flip_one.wppl --random-seed 0
 
 
 2) Many flips: repeat + count trues + empirical rate
@@ -64,9 +62,7 @@ Working examples
    :language: javascript
    :linenos:
 
-.. program-output:: python ../scripts/run_webppl.py ../examples/distributions/flip_many.wppl --random-seed 0
-   :prompt:
-   :ellipsis: 0
+.. program-output:: python ../scripts/run_webppl.py examples/distributions/flip_many.wppl --random-seed 0
 
 
 3) Same distribution: flip vs Bernoulli vs Categorical (enumerate)
@@ -76,9 +72,7 @@ Working examples
    :language: javascript
    :linenos:
 
-.. program-output:: python ../scripts/run_webppl.py ../examples/distributions/flip_equivalences.wppl --random-seed 0
-   :prompt:
-   :ellipsis: 0
+.. program-output:: python ../scripts/run_webppl.py examples/distributions/flip_equivalences.wppl --random-seed 0
 
 
 Common pitfall: function vs result (repeat)

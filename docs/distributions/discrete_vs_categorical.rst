@@ -20,6 +20,4 @@ Executable example
    :language: javascript
    :linenos:
 
-.. program-output:: python ../scripts/run_webppl.py ../examples/distributions/discrete_vs_categorical.wppl --random-seed 0
-   :prompt:
-   :ellipsis: 0
+.. program-output:: python ../scripts/run_webppl.py examples/distributions/discrete_vs_categorical.wppl --random-seed 0
