@@ -1,0 +1,52 @@
+// Measurement scales: nominal vs ordinal with Categorical.
+// We show the full distribution exactly via enumeration (deterministic output).
+
+var summarize = function(d) {
+  var supp = d.support();
+  var probs = map(function(v) { return Math.exp(d.score(v)); }, supp);
+  return {support: supp, probs: probs, sum: sum(probs)};
+};
+
+// NOMINAL: categories have no inherent order (e.g., colors).
+var colors = ["red", "green", "blue"];
+var colorWeights = [1, 3, 6]; // unnormalized weights OK
+
+var colorDist = Infer({
+  method: "enumerate",
+  model: function() {
+    return sample(Categorical({ps: colorWeights, vs: colors}));
+  }
+});
+
+// ORDINAL: categories have an order (e.g., low < medium < high),
+// but Categorical itself still just returns labels.
+var levels = ["low", "medium", "high"];
+var levelWeights = [2, 5, 3];
+
+var levelDist = Infer({
+  method: "enumerate",
+  model: function() {
+    return sample(Categorical({ps: levelWeights, vs: levels}));
+  }
+});
+
+// If you need to do numeric operations (e.g., compute an expected "level"),
+// you must explicitly map labels to ranks yourself:
+var rank = function(x) {
+  return x === "low" ? 1 : (x === "medium" ? 2 : 3);
+};
+
+var rankDist = Infer({
+  method: "enumerate",
+  model: function() {
+    return rank(sample(Categorical({ps: levelWeights, vs: levels})));
+  }
+});
+
+var out = {
+  nominal_colors: summarize(colorDist),
+  ordinal_levels_as_labels: summarize(levelDist),
+  ordinal_levels_as_ranks: summarize(rankDist)
+};
+
+out;
