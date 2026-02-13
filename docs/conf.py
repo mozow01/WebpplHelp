@@ -22,3 +22,5 @@ html_theme = 'sphinx_rtd_theme'
 autosectionlabel_prefix_document = True
 
 html_static_path = ['_static']
+
+html_baseurl = "https://mozow01.github.io/WebpplHelp/"
