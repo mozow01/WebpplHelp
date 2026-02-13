@@ -88,7 +88,7 @@ We can sample ``K`` directly by simulating Bernoulli trials until ``r`` successe
    :language: javascript
    :linenos:
 
-.. program-output:: python ../scripts/run_webppl.py ../examples/distributions/negative_binomial_waiting_time.wppl --random-seed 0
+.. program-output:: python ../scripts/run_webppl.py examples/distributions/negative_binomial_waiting_time.wppl --random-seed 0
 
 
 Scoring / likelihood via ``factor``
@@ -102,7 +102,7 @@ its log-PMF.
    :language: javascript
    :linenos:
 
-.. program-output:: python ../scripts/run_webppl.py ../examples/distributions/negative_binomial_logpmf_and_posterior.wppl --random-seed 0
+.. program-output:: python ../scripts/run_webppl.py examples/distributions/negative_binomial_logpmf_and_posterior.wppl --random-seed 0
 
 
 Alternative construction: Gamma–Poisson mixture
@@ -123,4 +123,4 @@ Then the marginal distribution of ``K`` is ``NB(r, p)``.
    :language: javascript
    :linenos:
 
-.. program-output:: python ../scripts/run_webppl.py ../examples/distributions/negative_binomial_gamma_poisson.wppl --random-seed 0
+.. program-output:: python ../scripts/run_webppl.py examples/distributions/negative_binomial_gamma_poisson.wppl --random-seed 0
