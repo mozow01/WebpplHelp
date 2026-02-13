@@ -1,5 +1,5 @@
 # WebPPL helper page 
 
-## Docs
+## Dokumentáció
 
 https://mozow01.github.io/WebpplHelp/
