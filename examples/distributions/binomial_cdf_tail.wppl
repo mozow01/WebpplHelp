@@ -13,9 +13,7 @@ var range = function(a, b) {
 
 var pmf = function(i) {
   return Math.exp(d.score(i));
-};
-
-var pEq = pmf(k);
+}; var pEq = pmf(k);
 var pLe = sum(map(pmf, range(0, k)));
 var pGe = sum(map(pmf, range(k, n)));
 
