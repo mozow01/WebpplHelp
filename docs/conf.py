@@ -1,6 +1,6 @@
-project = 'WebPPL Reference Manual (Executable Examples)'
+project = 'WebPPL Unofficial Reference Manual'
 copyright = '2026'
-author = 'WebPPL contributors (refman template)'
+author = 'Zoltán Gábor Molnár & ChatGPT'
 
 extensions = [
     'sphinx.ext.autosectionlabel',

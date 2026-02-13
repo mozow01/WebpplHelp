@@ -1,8 +1,8 @@
-WebPPL Reference Manual (Executable Examples)
+WebPPL Unofficial Reference Manual
 ===========================================
 
 This documentation style is aimed at being **Coq/Rocq-like** in one specific way:
-**every snippet is meant to be runnable**, and the docs build can execute examples.
+full of snippets, and examples.
 
 .. toctree::
    :maxdepth: 2

@@ -1,7 +1,7 @@
 Philosophy: docs that don't lie
 ==============================
 
-The goal is to avoid "móricka-style" one-liners and instead provide:
+The goal is to avoid "Móricka-style" one-liners and instead provide:
 
 - Exact call forms (positional vs options-object).
 - Precise data shapes (e.g. arrays vs tensors vs objects).
