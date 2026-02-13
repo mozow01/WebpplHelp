@@ -14,6 +14,7 @@ and return a *distribution object*. Distribution objects are mainly used in two 
    :maxdepth: 2
 
    sample_and_score
+   flip
    bernoulli
    binomial
    discrete_vs_categorical

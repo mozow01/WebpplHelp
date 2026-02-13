@@ -1,0 +1,27 @@
+var p = 0.7;
+
+var modelFlip = function() {
+  return flip(p);
+};
+
+var modelBern = function() {
+  return sample(Bernoulli({p: p}));
+};
+
+var modelCat = function() {
+  return sample(Categorical({ps: [p, 1 - p], vs: [true, false]}));
+};
+
+var d1 = Infer({method: 'enumerate', model: modelFlip});
+var d2 = Infer({method: 'enumerate', model: modelBern});
+var d3 = Infer({method: 'enumerate', model: modelCat});
+
+var summary = function(d) {
+  return {
+    support: d.support(),
+    pTrue: Math.exp(d.score(true)),
+    pFalse: Math.exp(d.score(false))
+  };
+};
+
+display([summary(d1), summary(d2), summary(d3)]);

@@ -1,0 +1,11 @@
+var p = 0.3;
+var n = 20;
+
+var xs = repeat(n, function() { return flip(p); });
+
+// bool -> 0/1
+var ones = map(function(b) { return b ? 1 : 0; }, xs);
+
+display(xs);
+display(sum(ones));       // number of trues
+display(listMean(ones));  // empirical rate (~p)

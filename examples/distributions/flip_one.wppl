@@ -1,0 +1,2 @@
+display(flip());     // default p = 0.5
+display(flip(0.8));  // explicit p = 0.8
