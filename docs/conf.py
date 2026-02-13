@@ -33,3 +33,8 @@ html_context = {
     "conf_py_path": "/docs/",
 }
 
+# Copy buttons ONLY for source code blocks (WebPPL is highlighted as javascript)
+copybutton_selector = "div.highlight-javascript pre, div.highlight-js pre"
+
+# Never copy line numbers, prompts, or console outputs (Pygments classes)
+copybutton_exclude = ".linenos, .gp, .go"
