@@ -20,6 +20,8 @@ npm run test:examples
 
 ## Build HTML docs
 
+https://mozow01.github.io/WebpplHelp/
+
 ```bash
 sphinx-build -b html docs _build/html
 ```
