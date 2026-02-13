@@ -1,0 +1,16 @@
+var d = Bernoulli({p: 0.7});
+
+var logpTrue = d.score(true);   // log(0.7)
+var logpFalse = d.score(false); // log(0.3)
+
+var out = {
+  logpTrue: logpTrue,
+  pTrue: Math.exp(logpTrue),
+
+  logpFalse: logpFalse,
+  pFalse: Math.exp(logpFalse),
+
+  checkSum: Math.exp(logpTrue) + Math.exp(logpFalse)
+};
+
+out;

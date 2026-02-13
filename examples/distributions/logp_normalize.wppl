@@ -1,0 +1,21 @@
+// Normalize log-scores stably using the "subtract max" trick (log-sum-exp style).
+
+var normalizeLogProbs = function(logps) {
+  var m = reduce(function(a, b) { return a > b ? a : b; }, -Infinity, logps);
+  var shifted = map(function(x) { return x - m; }, logps);
+  var ws = map(Math.exp, shifted);
+  var z = sum(ws);
+  return map(function(w) { return w / z; }, ws);
+};
+
+// A small example with Categorical-like weights
+var logps = [Math.log(1), Math.log(2), Math.log(7)];
+var ps = normalizeLogProbs(logps);
+
+var out = {
+  logps: logps,
+  probs: ps,
+  sum: sum(ps)
+};
+
+out;

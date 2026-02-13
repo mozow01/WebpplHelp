@@ -90,6 +90,42 @@ For Bernoulli in particular:
 
 (See also the Bernoulli page.)
 
+From log probability to probability
+----------------------------------
+
+WebPPL's ``score`` returns values in **log space** (natural log).
+To convert a single log probability back to an ordinary probability:
+
+- ``p = Math.exp(logp)``
+
+Example (Bernoulli)
+^^^^^^^^^^^^^^^^^^^
+
+.. literalinclude:: ../../examples/distributions/logp_to_p.wppl
+   :language: javascript
+   :linenos:
+
+.. program-output:: python ../scripts/run_webppl.py examples/distributions/logp_to_p.wppl --random-seed 0
+
+
+Normalizing a set of log scores (stable softmax)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When you have several log scores (e.g. for multiple outcomes),
+computing probabilities as ``Math.exp(logp)`` and then normalizing can underflow.
+
+A numerically stable pattern is:
+
+1. subtract the maximum log score
+2. exponentiate
+3. normalize
+
+.. literalinclude:: ../../examples/distributions/logp_normalize.wppl
+   :language: javascript
+   :linenos:
+
+.. program-output:: python ../scripts/run_webppl.py examples/distributions/logp_normalize.wppl --random-seed 0
+
 
 The optional second argument to ``sample``
 ------------------------------------------
