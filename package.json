@@ -8,5 +8,8 @@
   "scripts": {
     "test:examples": "python scripts/check_examples.py",
     "docs:html": "sphinx-build -b html docs _build/html"
+  },
+  "dependencies": {
+    "lodash": "^4.17.23"
   }
 }

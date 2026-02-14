@@ -110,3 +110,5 @@ To keep everything **finite and exactly enumerable**, we put a prior on a discre
    :linenos:
 
 .. program-output:: python ../scripts/run_webppl.py examples/distributions/bernoulli_coin_posterior.wppl --random-seed 0
+
+

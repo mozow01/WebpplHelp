@@ -2,6 +2,7 @@ project = 'WebPPL Unofficial Reference Manual'
 copyright = '2026'
 author = 'Zoltán Gábor Molnár & ChatGPT'
 
+
 extensions = [
     'sphinx.ext.autosectionlabel',
     'sphinx_copybutton',
@@ -21,7 +22,6 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 html_theme = 'sphinx_rtd_theme'
 autosectionlabel_prefix_document = True
 
-html_static_path = ['_static']
 
 html_baseurl = "https://mozow01.github.io/WebpplHelp/"
 
@@ -38,3 +38,25 @@ copybutton_selector = "div.highlight-javascript pre, div.highlight-js pre"
 
 # Never copy line numbers, prompts, or console outputs (Pygments classes)
 copybutton_exclude = ".linenos, .gp, .go"
+
+html_static_path = ['_static']
+
+html_css_files = []
+
+html_js_files = []
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
