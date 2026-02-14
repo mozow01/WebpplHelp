@@ -11,4 +11,5 @@ full of snippets, and examples.
    philosophy
    data_shapes
    distributions/index
+   functional/index
    cookbook/index

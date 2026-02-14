@@ -1,0 +1,36 @@
+// A closure: a function that "remembers" variables from its environment.
+
+var makeAdder = function(a) {
+  // The returned function closes over (remembers) 'a'.
+  return function(x) {
+    return a + x;
+  };
+};
+
+var add10 = makeAdder(10);
+
+display("add10(5) =");
+display(add10(5));
+
+display("map(add10, [1,2,3]) =");
+display(map(add10, [1, 2, 3]));
+
+// Another closure example: parameterized threshold check.
+var makeThreshold = function(t) {
+  return function(x) { return x < t; };
+};
+
+var below3 = makeThreshold(3);
+
+display("map(below3, [1,2,3,4,5]) =");
+display(map(below3, [1, 2, 3, 4, 5]));
+
+// WebPPL-flavored closure: a function that returns a stochastic function.
+var makeBiasedCoin = function(p) {
+  return function() { return flip(p); };
+};
+
+var coin70 = makeBiasedCoin(0.7);
+
+display("repeat(10, coin70) =");
+display(repeat(10, coin70));
