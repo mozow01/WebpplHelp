@@ -1,0 +1,35 @@
+// cache.wppl
+// Demonstrates what cache does in WebPPL (memoization) and why it's "state sneaking back"
+// into FP for a good purpose.
+
+// 1) Deterministic function: caching is a pure optimization
+var expensiveDeterministic = function(x) {
+  // Pretend this is expensive; keep it simple & fast.
+  return x * x + 1;
+};
+
+var fast = cache(expensiveDeterministic);
+
+display("Deterministic caching (same input -> same output, just faster):");
+display({first: fast(10), second: fast(10), third: fast(11)});
+
+// 2) Stochastic function: caching changes semantics (creates a stable latent value per key)
+var personType = cache(function(id) {
+  // One latent draw per id:
+  // first time we see an id -> sample; next time -> reuse.
+  return flip(0.3) ? "A" : "B";
+});
+
+display("\nLatent trait per id (cache turns randomness into stable per-key state):");
+display({
+  anna1: personType("anna"),
+  anna2: personType("anna"),
+  bela1: personType("bela"),
+  bela2: personType("bela")
+});
+
+// 3) Pitfall: accidental loss of independence
+var badCoin = cache(function() { return flip(0.5); });
+
+display("\nPitfall: caching a random draw removes independence across calls:");
+display({coin1: badCoin(), coin2: badCoin(), note: "coin1 and coin2 are always identical here"});

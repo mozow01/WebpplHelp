@@ -34,3 +34,4 @@ WebPPL, with runnable examples and WebPPL-specific "gotchas".
    :maxdepth: 2
 
    fp_basics
+   cache
