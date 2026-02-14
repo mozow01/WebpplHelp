@@ -32,6 +32,7 @@ WebPPL, with runnable examples and WebPPL-specific "gotchas".
 
 .. toctree::
    :maxdepth: 2
+   :caption: Contents
 
    fp_basics
    cache
