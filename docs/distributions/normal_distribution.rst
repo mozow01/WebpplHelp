@@ -18,17 +18,19 @@ Theory and Mathematical Definition
 
 The normal distribution is completely defined by two parameters:
 
-* **Mean** ($\mu$): The expected value or center of the distribution. It dictates where the peak of the bell curve is located.
-* **Standard Deviation** ($\sigma$): The spread of the distribution. A larger standard deviation means the data is more spread out and uncertain.
+* **Mean** (:math:`\mu`): The expected value or center of the distribution. It dictates where the peak of the bell curve is located.
+* **Standard Deviation** (:math:`\sigma`): The spread of the distribution. A larger standard deviation means the data is more spread out and uncertain.
 
 The Probability Density Function (PDF) is given by the following equation:
 
-$$f(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{\!2} \,\right)$$
+.. math::
+   
+   f(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{\2} \,\right)
 
 Visualizing the Distribution
 ----------------------------
 
-Here is how a standard normal distribution ($\mu = 0$, $\sigma = 1$) looks when sampled 10,000 times:
+Here is how a standard normal distribution (:math:`\mu=0`, :math:`\sigma=1`) looks when sampled 10,000 times:
 
 .. code-block:: javascript
 
