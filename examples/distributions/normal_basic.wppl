@@ -3,13 +3,13 @@ var d = Gaussian({mu: 175, sigma: 7});
 
 // Sample from the distribution
 var s = sample(d);
-print("A single sample: " + s);
+display("A single sample: " + s);
 
 // Calculate the probability density of a specific value (PDF)
 var p = Math.exp(d.score(175));
-print("Probability density at mean (175): " + p);
+display("Probability density at mean (175): " + p);
 
 // Generate multiple samples and calculate the empirical mean
 var samples = repeat(1000, function() { return sample(d); });
 var empiricalMean = listMean(samples);
-print("Empirical mean of 1000 samples: " + empiricalMean);
+display("Empirical mean of 1000 samples: " + empiricalMean);

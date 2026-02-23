@@ -18,4 +18,4 @@ var model = function() {
 var posterior = Infer({method: 'MCMC', samples: 5000}, model);
 
 // Print the expected value based on the posterior distribution
-print("Expected true length given the noisy data: " + expectation(posterior));
+display("Expected true length given the noisy data: " + expectation(posterior));
