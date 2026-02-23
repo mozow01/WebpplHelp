@@ -1,0 +1,21 @@
+// Observed data (e.g., measurements of an object's length)
+var observedData = [10.2, 9.8, 10.1, 10.5, 9.9];
+
+var model = function() {
+  // Prior: we believe the true length is around 10, but we are uncertain
+  var trueLength = sample(Gaussian({mu: 10, sigma: 2}));
+  
+  // Likelihood: our measuring tool has a known noise (sigma = 0.5)
+  var obsFn = function(d) {
+    observe(Gaussian({mu: trueLength, sigma: 0.5}), d);
+  };
+  map(obsFn, observedData);
+  
+  return trueLength;
+};
+
+// Run MCMC inference
+var posterior = Infer({method: 'MCMC', samples: 5000}, model);
+
+// Print the expected value based on the posterior distribution
+print("Expected true length given the noisy data: " + expectation(posterior));

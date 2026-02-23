@@ -20,4 +20,5 @@ and return a *distribution object*. Distribution objects are mainly used in two 
    binomial
    multinomial
    negative_binomial
+   normal_distribution
 
