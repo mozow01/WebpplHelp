@@ -25,7 +25,7 @@ The Probability Density Function (PDF) is given by the following equation:
 
 .. math::
    
-   f(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{\2} \,\right)
+   f(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left( -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^{2} \,\right)
 
 Visualizing the Distribution
 ----------------------------
@@ -42,7 +42,7 @@ Here is how a standard normal distribution (:math:`\mu=0`, :math:`\sigma=1`) loo
 .. image:: ../images/normal_plot.svg
    :alt: Histogram of a standard normal distribution
    :align: center
-   :width: 600px
+   :width: 300px
 
 *(Note: You can easily generate this visualization on webppl.org using the ``viz.hist()`` function.)*
 
