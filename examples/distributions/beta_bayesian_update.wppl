@@ -1,0 +1,13 @@
+var model = function() {
+  // Prior: We know nothing, so we use Beta(1, 1) which is Uniform(0, 1)
+  var p = sample(Beta({a: 1, b: 1}));
+  
+  // Data: We observe 8 successes (heads) out of 10 trials
+  observe(Binomial({p: p, n: 10}), 8);
+  
+  return p;
+};
+
+var posterior = Infer({model: model, method: 'MCMC', samples: 5000});
+
+display("Posterior Expected value of p: " + expectation(posterior));

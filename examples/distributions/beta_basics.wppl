@@ -1,0 +1,9 @@
+// Define a Beta distribution with alpha=2, beta=5
+var d = Beta({a: 2, b: 5});
+
+var s = sample(d);
+display("Sample from Beta(2, 5): " + s);
+
+var logDensity = d.score(0.3);
+display("Log density at 0.3: " + logDensity);
+display("Density at 0.3: " + Math.exp(logDensity));

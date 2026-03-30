@@ -2,7 +2,7 @@ Binomial
 ========
 
 A Binomial distribution models the number of **successes** in :math:`n` independent trials,
-where each trial is a Bernoulli event with success probability _math:`p`.
+where each trial is a Bernoulli event with success probability :math:`p`.
 
 Intuition:
 
@@ -131,7 +131,7 @@ Recall the Binomial probability mass function:
 
 WebPPL returns probabilities in **log space**. For ``d = Binomial({n: n, p: p})``:
 
-- ``d.score(k)`` equals :math:`log P(X = k)` (natural log)
+- ``d.score(k)`` equals :math:`\log P(X = k)` (natural log)
 - therefore ``Math.exp(d.score(k))`` equals the ordinary probability :math:`P(X = k)`
 
 Equivalently:
@@ -188,9 +188,9 @@ Executable example: CDF and tail probabilities
 A real-life example: estimating click-through rate (CTR) on a small grid
 ------------------------------------------------------------------------
 
-Story: you send ``n = 10`` emails and observe ``k = 4`` clicks.
-Assume clicks are independent with unknown click probability ``p`` (a Bernoulli success rate).
-We place a discrete prior on a small candidate set for ``p`` and compute the posterior exactly using enumeration.
+Story: you send :math:`n = 10` emails and observe :math:`k = 4` clicks.
+Assume clicks are independent with unknown click probability :math:`p` (a Bernoulli success rate).
+We place a discrete prior on a small candidate set for :math:`p` and compute the posterior exactly using enumeration.
 
 .. literalinclude:: ../../examples/distributions/binomial_ctr_posterior.wppl
    :language: javascript

@@ -21,4 +21,5 @@ and return a *distribution object*. Distribution objects are mainly used in two 
    multinomial
    negative_binomial
    normal_distribution
+   beta
 
