@@ -52,6 +52,157 @@ Constructor
 - ``b``: shape parameter 2 (beta), real number ``> 0``
 - support: real numbers in ``[0, 1]``
 
+Interactive Visualization
+-------------------------
+
+Experiment with the :math:`\alpha` and :math:`\beta` parameters below to see how the shape of the Beta distribution changes in real-time.
+
+.. raw:: html
+
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   
+   <style>
+       .beta-generator-wrapper {
+           margin: 2rem 0;
+           padding: 1rem;
+           border: 1px solid #e1e4e8;
+           border-radius: 6px;
+           background-color: #ffffff;
+       }
+       .beta-controls {
+           background: #f6f8fa;
+           padding: 1rem;
+           border-radius: 6px;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           gap: 20px;
+           margin-bottom: 1rem;
+       }
+       .beta-controls label { font-weight: bold; margin-right: 5px; }
+       .beta-controls input {
+           width: 70px;
+           padding: 6px;
+           border: 1px solid #d1d5da;
+           border-radius: 4px;
+       }
+       .beta-controls button {
+           padding: 8px 16px;
+           background-color: #2ea44f;
+           color: white;
+           border: none;
+           border-radius: 4px;
+           font-weight: bold;
+           cursor: pointer;
+       }
+       .beta-controls button:hover { background-color: #2c974b; }
+       .beta-canvas-container {
+           position: relative;
+           height: 350px;
+           width: 100%;
+       }
+   </style>
+
+   <div class="beta-generator-wrapper">
+       <div class="beta-controls">
+           <div>
+               <label for="alphaInput">Alpha (α):</label>
+               <input type="number" id="alphaInput" value="2" min="1" max="150" step="1">
+           </div>
+           <div>
+               <label for="betaInput">Beta (β):</label>
+               <input type="number" id="betaInput" value="5" min="1" max="150" step="1">
+           </div>
+           <button onclick="updateBetaChart()">Draw Distribution</button>
+       </div>
+       <div class="beta-canvas-container">
+           <canvas id="betaChartCanvas"></canvas>
+       </div>
+   </div>
+
+   <script>
+       function betaFactorial(n) {
+           if (n === 0 || n === 1) return 1;
+           let result = 1;
+           for (let i = n; i > 1; i--) { result *= i; }
+           return result;
+       }
+
+       function betaFunc(alpha, beta) {
+           return (betaFactorial(alpha - 1) * betaFactorial(beta - 1)) / betaFactorial(alpha + beta - 1);
+       }
+
+       function calculateBetaPDF(x, alpha, beta) {
+           if (x < 0 || x > 1) return 0;
+           const normalizer = betaFunc(alpha, beta);
+           return (Math.pow(x, alpha - 1) * Math.pow(1 - x, beta - 1)) / normalizer;
+       }
+
+       function generatePlotData(alpha, beta, numPoints = 100) {
+           const labels = [];
+           const data = [];
+           for (let i = 0; i <= numPoints; i++) {
+               const x = i / numPoints;
+               labels.push(x.toFixed(2));
+               data.push(calculateBetaPDF(x, alpha, beta));
+           }
+           return { labels, data };
+       }
+
+       let myBetaChart = null;
+
+       function updateBetaChart() {
+           let alpha = parseInt(document.getElementById('alphaInput').value);
+           let beta = parseInt(document.getElementById('betaInput').value);
+
+           if (isNaN(alpha) || alpha < 1) alpha = 1;
+           if (isNaN(beta) || beta < 1) beta = 1;
+           if (alpha > 150) alpha = 150;
+           if (beta > 150) beta = 150;
+
+           const plotData = generatePlotData(alpha, beta);
+           const ctx = document.getElementById('betaChartCanvas').getContext('2d');
+
+           if (myBetaChart) {
+               myBetaChart.destroy();
+           }
+
+           myBetaChart = new Chart(ctx, {
+               type: 'line',
+               data: {
+                   labels: plotData.labels,
+                   datasets: [{
+                       label: `Beta(${alpha}, ${beta}) PDF`,
+                       data: plotData.data,
+                       borderColor: '#0366d6',
+                       backgroundColor: 'rgba(3, 102, 214, 0.1)',
+                       borderWidth: 2,
+                       fill: true,
+                       pointRadius: 0,
+                       tension: 0.4
+                   }]
+               },
+               options: {
+                   responsive: true,
+                   maintainAspectRatio: false,
+                   scales: {
+                       x: { title: { display: true, text: 'Probability (p)' }, ticks: { maxTicksLimit: 11 } },
+                       y: { title: { display: true, text: 'Density' }, beginAtZero: true }
+                   },
+                   plugins: {
+                       tooltip: {
+                           callbacks: { label: function(context) { return `Density: ${context.parsed.y.toFixed(4)}`; } }
+                       }
+                   }
+               }
+           });
+       }
+
+       // Initialize the chart once the DOM is fully loaded
+       document.addEventListener('DOMContentLoaded', updateBetaChart);
+   </script>
+
+
 Relationship to Binomial (Conjugacy)
 ------------------------------------
 
